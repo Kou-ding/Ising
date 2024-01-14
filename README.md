@@ -40,15 +40,19 @@ The code is divided into 4 files:
 ```bash
 make seq
 ```
-- cuda-moment.c
+- cuda-thread.c
 ```bash
-make mom
+make thread
 ```
 - cuda-block.c
 ```bash
-make blo
+make block
 ```
 - cuda-multithreads.c
 ```bash
-make mul
+make multi
+```
+In order to remove the executables:
+```bash
+make clean
 ```

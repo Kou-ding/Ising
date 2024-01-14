@@ -8,7 +8,8 @@ void isingSimulation(int n, int k) {
     int* next = (int*)malloc(n * n * sizeof(int));
 
     // Initialize the current state with random values
-    srand(time(NULL));
+    srand(1);
+    //srand(time(NULL));
     for (int i = 0; i < n * n; i++) {
         current[i] = rand() % 2 == 0 ? -1 : 1;
     }

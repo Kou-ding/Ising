@@ -6,24 +6,24 @@ CC = gcc
 CFLAGS = -Wall
 
 # all is the default action in makefiles
-all: seq mom blo mul
+all: seq threads blocks shared
 
 # Sequantial
 seq: ising-seq.c 
 	$(CC) $(CFLAGS) $^ -o $@
 
 # GPU with one thread per moment
-mom: cuda-moment.c
+threads: cuda-threads.c
 	$(CC) $(CFLAGS) $^ -o $@
 
-#  GPU with one thread computing a block of moments
-blo: cuda-block.c
+# GPU with one thread computing a block of moments
+blocks: cuda-blocks.c
 	$(CC) $(CFLAGS) $^ -o $@
 
 # GPU with multiple thread sharing common input moments
-mul: cuda-multithreads.c
+shared: cuda-shared.c
 	$(CC) $(CFLAGS) $^ -o $@
 
 
 clean:
-	rm -f seq mom blo mul
+	rm -f seq threads blocks shared
