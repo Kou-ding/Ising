@@ -106,8 +106,10 @@ The excel file from which these data have been extracted from reside in the "med
 |10|100|100|
 |20|1,000|1000|
 |50|10,000|-|
-|-|100,000|-|
-|-|1,000,000|-|
+|-|26,000|-|
+|-|45,000|-|
+
+The memory limit for Aristotelis was n=26,000 if we had to allocate memory for cpu and gpu pointers. However on the sequential code we only had to allocate memory for the cpu pointers so that raised the limit to 45,000.
 
 <p align="center">
   <img src="media/graphs.png" alt="graphs">
@@ -156,3 +158,7 @@ make clean
 ```
 >When launching them you are prompted to initialize 2-3 parameters: size, iterations, threads(only on blocks and shared executables).
 
+External sources
+----------------
+- Cuda programming tutorial: https://www.youtube.com/watch?v=8sDg-lD1fZQ
+- Cuda documentation from NVIDIA: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html

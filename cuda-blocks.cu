@@ -28,16 +28,33 @@ __global__ void isingCuda(int* currentCuda, int* nextCuda, int n, int elementsPe
 void isingSimulation(int n, int k, int numThreads) {
     // Allocate input vectors h_A and h_B in host memory
     int* current = (int*)malloc(n * n * sizeof(int));
+    if (current == NULL) {
+        printf("current: Memory not available.\n");
+        exit(1);
+    }
+
     int* next = (int*)malloc(n * n * sizeof(int));
+    if (next == NULL) {
+        printf("next: Memory not available.\n");
+        exit(1);
+    }
 
     // Allocate vectors in device memory
     int* currentCuda;
     cudaMalloc(&currentCuda, n * n * sizeof(int));
+    if (currentCuda == NULL) {
+        printf("currentCuda: Memory not available.\n");
+        exit(1);
+    }
     int* nextCuda;
     cudaMalloc(&nextCuda, n * n * sizeof(int));
+    if (nextCuda == NULL) {
+        printf("nextCuda: Memory not available.\n");
+        exit(1);
+    }
 
-     // Initialize the current state with random values
-     srand(1);
+    // Initialize the current state with random values
+    srand(1);
     //srand(time(NULL));
     for (int i = 0; i < n * n; i++) {
         current[i] = rand() % 2 == 0 ? -1 : 1;

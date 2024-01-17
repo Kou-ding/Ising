@@ -5,8 +5,16 @@
 void isingSimulation(int n, int k) {
     // Allocate memory for two arrays
     int* current = (int*)malloc(n * n * sizeof(int));
-    int* next = (int*)malloc(n * n * sizeof(int));
+    if (current == NULL) {
+        printf("current: Memory not available.\n");
+        exit(1);
+    }
 
+    int* next = (int*)malloc(n * n * sizeof(int));
+    if (next == NULL) {
+        printf("next: Memory not available.\n");
+        exit(1);
+    }
     // Initialize the current state with random values
     srand(1);
     //srand(time(NULL));
