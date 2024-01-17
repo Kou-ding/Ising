@@ -3,26 +3,28 @@
 # $< (first prerequisite): refers to the first thing that is after the ":"
 
 CC = gcc
-CFLAGS = -Wall
+CFLAGS = -Wall -std=c99
+NVCC = nvcc
+CUFLAGS = -O3
 
 # all is the default action in makefiles
 all: seq threads blocks shared
 
 # Sequantial
-seq: ising-seq.c 
+seq: ising-seq.c
 	$(CC) $(CFLAGS) $^ -o $@
 
 # GPU with one thread per moment
-threads: cuda-threads.c
-	$(CC) $(CFLAGS) $^ -o $@
+threads: cuda-threads.cu
+	$(NVCC) $(CUFLAGS) $^ -o $@
 
 # GPU with one thread computing a block of moments
-blocks: cuda-blocks.c
-	$(CC) $(CFLAGS) $^ -o $@
+blocks: cuda-blocks.cu
+	$(NVCC) $(CUFLAGS) $^ -o $@
 
 # GPU with multiple thread sharing common input moments
-shared: cuda-shared.c
-	$(CC) $(CFLAGS) $^ -o $@
+shared: cuda-shared.cu
+	$(NVCC) $(CUFLAGS) $^ -o $@
 
 
 clean:

@@ -30,7 +30,7 @@ void isingSimulation(int n, int k) {
                 next[i*n + j] = sum > 0 ? 1 : -1;
             }
         }
-        // Print the matrix
+        /* Print for debugging
         printf("|");
         for (int i = 0; i < n * n; i++) {
             if (current[i] == 1){
@@ -42,22 +42,41 @@ void isingSimulation(int n, int k) {
             if (((i+1)%n)==0 && i!=0 && i!=n*n-1) printf("\n|");
             if (((i+1)%(n*n))==0 && i!=0) printf("\n----------------\n");
         }
-        
+        */
         // Swap the pointers of current and next arrays
         int* temp = current;
         current = next;
         next = temp;
     }
+    /* Print the matrix
+        printf("|");
+        for (int i = 0; i < n * n; i++) {
+            if (current[i] == 1){
+                printf(" %d|", current[i]);
+            } 
+            else{
+                printf("%d|", current[i]);
+            }
+            if (((i+1)%n)==0 && i!=0 && i!=n*n-1) printf("\n|");
+            if (((i+1)%(n*n))==0 && i!=0) printf("\n");
+        }*/
     // Free the memory
     free(current);
     free(next);
 }
 
 int main() {
-    int n = 4; // Size of the Ising model
+    int n = 1300000; // Size of the Ising model
     int k = 5; // Number of iterations
+    clock_t start, end;
+    double cpu_time_used;
 
+    start = clock();
     isingSimulation(n, k);
-    
+    end = clock();
+
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+
+    printf("Time taken: %f seconds\n", cpu_time_used);
     return 0;
 }

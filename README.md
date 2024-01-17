@@ -35,24 +35,35 @@ Finally after all k iteration finish we free the two pointers and return 0.
 ### GPU with multiple thread sharing common input moments
 
 ### Tutorial
+
+#### Aristotelis HPC
+```bash
+# Loading the compiler modules is a requirement for running 
+# code on HPCs.
+module load gcc/7.3.0 cuda/10.0.130
+```
+
+#### Makefile
 The code is divided into 4 files:
 - ising-seq.c
 ```bash
 make seq
 ```
-- cuda-thread.c
+- cuda-threads.cu
 ```bash
-make thread
+make threads
 ```
-- cuda-block.c
+- cuda-blocks.cu
 ```bash
-make block
+make blocks
 ```
-- cuda-multithreads.c
+- cuda-shared.cu
 ```bash
-make multi
+make shared
 ```
 In order to remove the executables:
 ```bash
 make clean
 ```
+
+
