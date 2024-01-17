@@ -81,8 +81,13 @@ void isingSimulation(int n, int k) {
 }
 
 int main() {
-    int n = 1300000; // Size of the Ising model
-    int k = 5; // Number of iterations
+    int n; // Size of the Ising model
+    int k; // Number of iterations
+    printf("Enter the size of the Ising model: ");
+    scanf("%d", &n);
+    printf("Enter the number of iterations: ");
+    scanf("%d", &k);
+    
     clock_t start, end;
     double cpu_time_used;
 
